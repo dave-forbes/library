@@ -3,7 +3,7 @@ const author = document.querySelector('#author');
 const pages = document.querySelector('#pages');
 const readYes = document.querySelector('#yes');
 const readNo = document.querySelector('#no');
-const button = document.querySelector('button');
+const addBookButton = document.querySelector('button.add-book');
 const containerDiv = document.querySelector('.book-container');
 let read;
 
@@ -62,7 +62,7 @@ function addBookToLibrary(book) {
   displayLibrary();
 }
 
-button.addEventListener('click', () => {
+addBookButton.addEventListener('click', () => {
   if (readYes.checked === true) {
     read = 'yes';
   } else {
