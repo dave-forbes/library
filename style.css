@@ -1,0 +1,5 @@
+div[index] {
+  border: 1px solid black;
+  display: grid;
+  width: 200px;
+}
