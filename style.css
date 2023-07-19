@@ -9,12 +9,14 @@ div[index] {
   display: grid;
   border-radius: 15px;
   padding: 10px;
+  background-color: rgb(254, 248, 242);
 }
 
 .book-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 15px
+  gap: 20px;
+  padding: 20px;
 }
 
 button {
@@ -38,7 +40,7 @@ header {
   text-align: center;
   border: 1px solid black;
   border-radius: 15px;
-  padding: 10px;
+  padding: 20px;
   background-color: rgb(254, 248, 242);
   gap: 10px;
 }
