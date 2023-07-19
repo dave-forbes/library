@@ -11,24 +11,32 @@
 </head>
 
 <body>
-  <div>
-    <label for="title">Title</label>
-    <input id="title" type="text">
+  <header>
+    <h1>My Library</h1>
+  </header>
+  <div class="add-book-form">
+    <div>
+      <label for="title">Title</label>
+      <input id="title" type="text">
+    </div>
+    <div>
+      <label for="author">Author</label>
+      <input id="author" type="text">
+    </div>
+    <div>
+      <label for="pages">Pages</label>
+      <input id="pages" type="number">
+    </div>
+    <div>
+      <label for="read">Read?</label>
+      <div><label>Yes</label><input name="read" id="yes" type="radio" value="yes"></div>
+      <div><label>No</label><input name="read" id="no" type="radio" value="no"></div>
+    </div>
+    <button class="add-book">Add book</button>
   </div>
-  <div>
-    <label for="author">Author</label>
-    <input id="author" type="text">
+  <div class="button-wrapper">
+    <button class="bring-up-form">Add book</button>
   </div>
-  <div>
-    <label for="pages">Pages</label>
-    <input id="pages" type="number">
-  </div>
-  <div>
-    <label for="read">Read?</label>
-    <div><label>Yes</label><input name="read" id="yes" type="radio" value="yes"></div>
-    <div><label>No</label><input name="read" id="no" type="radio" value="no"></div>
-  </div>
-  <button>Add book</button>
   <div class="book-container"></div>
 </body>
 

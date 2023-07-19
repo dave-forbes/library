@@ -4,6 +4,8 @@ const pages = document.querySelector('#pages');
 const readYes = document.querySelector('#yes');
 const readNo = document.querySelector('#no');
 const addBookButton = document.querySelector('button.add-book');
+const formButton = document.querySelector('button.bring-up-form');
+const formDiv = document.querySelector('div.add-book-form');
 const containerDiv = document.querySelector('.book-container');
 let read;
 
@@ -70,6 +72,12 @@ addBookButton.addEventListener('click', () => {
   }
   const book = new Book(title.value, author.value, pages.value, read);
   addBookToLibrary(book);
+  formDiv.style.display = 'none';
 });
 
+formButton.addEventListener('click', () => {
+  if (formDiv.style.display = 'none') {
+    formDiv.style.display = 'grid';
+  }
+})
 
