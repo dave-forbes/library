@@ -14,26 +14,21 @@
   <header>
     <h1>My Library</h1>
   </header>
-  <div class="add-book-form">
+  <form class="add-book-form fade-in">
+    <label for="title">Title</label>
+    <input id="title" type="text">
+    <label for="author">Author</label>
+    <input id="author" type="text">
+    <label for="pages">Pages</label>
+    <input id="pages" type="number">
+    <p>Read?</p>
     <div>
-      <label for="title">Title</label>
-      <input id="title" type="text">
+      <label for="yes">Yes</label><input name="read" id="yes" type="radio" value="yes">
+      <label for="no">No</label><input name="read" id="no" type="radio" value="no">
     </div>
-    <div>
-      <label for="author">Author</label>
-      <input id="author" type="text">
-    </div>
-    <div>
-      <label for="pages">Pages</label>
-      <input id="pages" type="number">
-    </div>
-    <div>
-      <label for="read">Read?</label>
-      <div><label>Yes</label><input name="read" id="yes" type="radio" value="yes"></div>
-      <div><label>No</label><input name="read" id="no" type="radio" value="no"></div>
     </div>
     <button class="add-book">Add book</button>
-  </div>
+  </form>
   <div class="button-wrapper">
     <button class="bring-up-form">Add book</button>
   </div>
