@@ -5,7 +5,7 @@ const readYes = document.querySelector('#yes');
 const readNo = document.querySelector('#no');
 const addBookButton = document.querySelector('button.add-book');
 const formButton = document.querySelector('button.bring-up-form');
-const formDiv = document.querySelector('div.add-book-form');
+const formDiv = document.querySelector('form.add-book-form');
 const containerDiv = document.querySelector('.book-container');
 let read;
 
@@ -39,6 +39,8 @@ function displayLibrary() {
     div.appendChild(pages);
     div.appendChild(read);
     div.appendChild(removeButton);
+    div.classList.remove('fade-out');
+    div.classList.add('fade-in');
     containerDiv.appendChild(div);
     div.setAttribute('Index', index);
     removeButton.setAttribute('Index', index);
@@ -47,8 +49,11 @@ function displayLibrary() {
   allRemoveButtons.forEach(item => item.addEventListener('click', () => {
     const index = item.getAttribute('index');
     const div = document.querySelector(`div[index="${index}"]`);
+    div.classList.remove('fade-in');
+    div.classList.add('fade-out');
     containerDiv.removeChild(div);
-    myLibrary.splice(index, index + 1);
+    myLibrary.splice(index, 1);
+    console.log(myLibrary);
   }))
 }
 
@@ -60,9 +65,15 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary(book) {
+  formDiv.classList.add('fade-out')
+  formDiv.classList.remove('fade-in')
   myLibrary.push(book);
   displayLibrary();
 }
+
+addBookButton.addEventListener('click', (event) => {
+  event.preventDefault();
+})
 
 addBookButton.addEventListener('click', () => {
   if (readYes.checked === true) {
@@ -72,6 +83,8 @@ addBookButton.addEventListener('click', () => {
   }
   const book = new Book(title.value, author.value, pages.value, read);
   addBookToLibrary(book);
+  formDiv.classList.add('fade-in')
+  formDiv.classList.remove('fade-out')
   formDiv.style.display = 'none';
 });
 
