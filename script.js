@@ -63,11 +63,15 @@ function displayBook(book) {
   read.textContent = `Read: ${book.read}`;
   const removeButton = document.createElement('button');
   removeButton.textContent = 'Delete';
+  removeButton.classList.add('remove');
+  const editButton = document.createElement('button');
+  editButton.textContent = 'Edit';
   div.appendChild(title);
   div.appendChild(author);
   div.appendChild(pages);
   div.appendChild(read);
   div.appendChild(removeButton);
+  div.appendChild(editButton);
   div.classList.add('fade-in-div');
   containerDiv.appendChild(div);
 }
@@ -78,12 +82,12 @@ function addIndexes() {
   const allDivs = containerDiv.querySelectorAll('div');
   allDivs.forEach((item, index) => item.setAttribute('Index', index));
 
-  const allRemoveButtons = containerDiv.querySelectorAll('button');
+  const allRemoveButtons = containerDiv.querySelectorAll('button.remove');
   allRemoveButtons.forEach((item, index) => item.setAttribute('Index', index));
 }
 
 function activateRemoveButtons() {
-  const allRemoveButtons = containerDiv.querySelectorAll('button');
+  const allRemoveButtons = containerDiv.querySelectorAll('button.remove');
   allRemoveButtons.forEach(item => item.addEventListener('click', () => {
     const itemIndex = item.getAttribute('index');
     const div = document.querySelector(`div[index="${itemIndex}"]`);
