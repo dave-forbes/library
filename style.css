@@ -12,10 +12,10 @@ h2 {
 input {
   border-radius: 10px;
   padding: 0.5rem;
+  border: none;
 }
 
 .book-container>div {
-  border: 1px solid black;
   display: grid;
   border-radius: 15px;
   padding: 10px;
@@ -39,6 +39,8 @@ input {
 
 button {
   border-radius: 15px;
+  border: none;
+  padding: 0.5rem;
 }
 
 header {
@@ -61,7 +63,6 @@ label.h2 {
   transform: translate(-50%, -50%);
   width: 250px;
   text-align: center;
-  border: 1px solid black;
   border-radius: 15px;
   padding: 30px;
   background-color: rgb(254, 248, 242);

@@ -22,12 +22,11 @@
     <input id="author" type="text">
     <label for="pages">Pages</label>
     <input id="pages" type="number">
-    <p>Read?</p>
-    <div>
-      <label for="yes">Yes</label><input name="read" id="yes" type="radio" value="yes">
-      <label for="no">No</label><input name="read" id="no" type="radio" value="no">
-    </div>
-    </div>
+    <label for="read">Read?</label>
+    <select name="read" id="read">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
     <div class="form-buttons">
       <button class="add-book">Add book</button>
       <button class="cancel">Cancel</button>
