@@ -6,56 +6,11 @@ const readNo = document.querySelector('#no');
 const addBookButton = document.querySelector('button.add-book');
 const formButton = document.querySelector('button.bring-up-form');
 const formDiv = document.querySelector('form.add-book-form');
-const containerDiv = document.querySelector('.book-container');
+const closeForm = document.querySelector('button.cancel');
+const containerDiv = document.querySelector('div.book-container');
 let read;
 
-let myLibrary = [
-  {
-    title: 'The Hobbit',
-    author: 'Tolkien',
-    pages: 345,
-    read: 'yes'
-  }
-];
-
-displayLibrary();
-
-function displayLibrary() {
-  containerDiv.innerHTML = '';
-  myLibrary.forEach((book, index) => {
-    const div = document.createElement('div');
-    const title = document.createElement('h2');
-    title.textContent = `Title: ${book['title']}`;
-    const author = document.createElement('p');
-    author.textContent = `Author: ${book['author']}`;
-    const pages = document.createElement('p');
-    pages.textContent = `Pages: ${book['pages']}`;
-    const read = document.createElement('p');
-    read.textContent = `Read: ${book['read']}`;
-    const removeButton = document.createElement('button');
-    removeButton.textContent = 'Delete';
-    div.appendChild(title);
-    div.appendChild(author);
-    div.appendChild(pages);
-    div.appendChild(read);
-    div.appendChild(removeButton);
-    div.classList.remove('fade-out');
-    div.classList.add('fade-in');
-    containerDiv.appendChild(div);
-    div.setAttribute('Index', index);
-    removeButton.setAttribute('Index', index);
-  })
-  allRemoveButtons = containerDiv.querySelectorAll('button');
-  allRemoveButtons.forEach(item => item.addEventListener('click', () => {
-    const index = item.getAttribute('index');
-    const div = document.querySelector(`div[index="${index}"]`);
-    div.classList.remove('fade-in');
-    div.classList.add('fade-out');
-    containerDiv.removeChild(div);
-    myLibrary.splice(index, 1);
-    console.log(myLibrary);
-  }))
-}
+let myLibrary = [];
 
 function Book(title, author, pages, read) {
   this.title = title
@@ -64,18 +19,18 @@ function Book(title, author, pages, read) {
   this.read = read
 }
 
-function addBookToLibrary(book) {
-  formDiv.classList.add('fade-out')
-  formDiv.classList.remove('fade-in')
-  myLibrary.push(book);
-  displayLibrary();
-}
+formButton.addEventListener('click', () => {
+  formDiv.classList.remove('fade-out')
+  formDiv.classList.add('fade-in');
+})
+
+closeForm.addEventListener('click', () => {
+  formDiv.classList.remove('fade-in');
+  formDiv.classList.add('fade-out');
+})
 
 addBookButton.addEventListener('click', (event) => {
   event.preventDefault();
-})
-
-addBookButton.addEventListener('click', () => {
   if (readYes.checked === true) {
     read = 'yes';
   } else {
@@ -83,14 +38,58 @@ addBookButton.addEventListener('click', () => {
   }
   const book = new Book(title.value, author.value, pages.value, read);
   addBookToLibrary(book);
-  formDiv.classList.add('fade-in')
-  formDiv.classList.remove('fade-out')
-  formDiv.style.display = 'none';
+  formDiv.classList.remove('fade-in')
+  formDiv.classList.add('fade-out');
 });
 
-formButton.addEventListener('click', () => {
-  if (formDiv.style.display = 'none') {
-    formDiv.style.display = 'grid';
-  }
-})
+function addBookToLibrary(book) {
+  formDiv.classList.remove('fade-in')
+  myLibrary.push(book);
+  console.log(myLibrary);
+  displayBook(book);
+  addIndexes();
+  activateRemoveButtons();
+}
 
+function displayBook(book) {
+  const div = document.createElement('div');
+  const title = document.createElement('h2');
+  title.textContent = `Title: ${book.title}`;
+  const author = document.createElement('p');
+  author.textContent = `Author: ${book.author}`;
+  const pages = document.createElement('p');
+  pages.textContent = `Pages: ${book.pages}`;
+  const read = document.createElement('p');
+  read.textContent = `Read: ${book.read}`;
+  const removeButton = document.createElement('button');
+  removeButton.textContent = 'Delete';
+  div.appendChild(title);
+  div.appendChild(author);
+  div.appendChild(pages);
+  div.appendChild(read);
+  div.appendChild(removeButton);
+  div.classList.add('fade-in-div');
+  containerDiv.appendChild(div);
+}
+
+function addIndexes() {
+  myLibrary.forEach((book, index) => book['index'] = index);
+
+  const allDivs = containerDiv.querySelectorAll('div');
+  allDivs.forEach((item, index) => item.setAttribute('Index', index));
+
+  const allRemoveButtons = containerDiv.querySelectorAll('button');
+  allRemoveButtons.forEach((item, index) => item.setAttribute('Index', index));
+}
+
+function activateRemoveButtons() {
+  const allRemoveButtons = containerDiv.querySelectorAll('button');
+  allRemoveButtons.forEach(item => item.addEventListener('click', () => {
+    const itemIndex = item.getAttribute('index');
+    const div = document.querySelector(`div[index="${itemIndex}"]`);
+    containerDiv.removeChild(div);
+    const libraryIndex = myLibrary.findIndex(item => item.index == itemIndex);
+    myLibrary.splice(libraryIndex, 1);
+    console.log(myLibrary);
+  }))
+}
