@@ -7,13 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Library</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://kit.fontawesome.com/1defe17cdd.js" crossorigin="anonymous"></script>
-  <script src="script.js" defer></script>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Victor Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+</head>
+<script src="https://kit.fontawesome.com/1defe17cdd.js" crossorigin="anonymous"></script>
+<script src="script.js" defer></script>
 </head>
 
 <body>
   <header>
-    <h1>My Library</h1>
+    <h1>My Library <i class="fa-solid fa-book"></i></h1>
   </header>
   <form class="add-book-form fade-out">
     <label class="h2" for="title">Title</label>
@@ -23,10 +26,9 @@
     <label for="pages">Pages</label>
     <input id="pages" type="number">
     <label for="read">Read?</label>
-    <select name="read" id="read">
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <div id="read" class="toggle-btn" onclick="this.classList.toggle('active')">
+      <div class="inner-circle"></div>
+    </div>
     <div class="form-buttons">
       <button class="add-book">Add book</button>
       <button class="cancel">Cancel</button>
@@ -35,6 +37,7 @@
   <div class="button-wrapper">
     <button class="bring-up-form">Add book</button>
   </div>
+  <div class="books-read"></div>
   <div class="book-container"></div>
 </body>
 
