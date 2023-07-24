@@ -95,63 +95,32 @@ function addIndexes() {
 
 function addEventListenersToRemoveButtons() {
   const allRemoveButtons = containerDiv.querySelectorAll('button.remove');
-  allRemoveButtons.forEach(item => item.addEventListener('click', () => {
-    const itemIndex = item.getAttribute('index');
+  allRemoveButtons.forEach(button => button.addEventListener('click', () => {
+    const itemIndex = button.getAttribute('index');
     const div = document.querySelector(`div[index="${itemIndex}"].fade-in-div`);
-    containerDiv.removeChild(div);
+    if (div !== null) containerDiv.removeChild(div);
     const libraryIndex = myLibrary.findIndex(item => item.index == itemIndex);
     myLibrary.splice(libraryIndex, 1);
     displayBooksRead();
   }))
 }
 
-// function addEventListenersToToggles() {
-//   const toggleButtons = document.querySelectorAll('div.fade-in-div > div.toggle-btn');
-//   toggleButtons.forEach(button => button.addEventListener('click', () => {
-//     const itemIndex = button.getAttribute('index');
-//     console.log(itemIndex);
-//     const libraryIndex = myLibrary.findIndex(item => item.index == itemIndex);
-//     console.log(libraryIndex);
-//     if (myLibrary[libraryIndex].read == true) {
-//       myLibrary[libraryIndex].read = false;
-//     } else if (myLibrary[libraryIndex].read == false) {
-//       myLibrary[libraryIndex].read = true;
-//     }
-//     displayBooksRead();
-//   }))
-// }
-
 function addEventListenersToToggles() {
   const toggleButtons = document.querySelectorAll('div.fade-in-div > div.toggle-btn');
-  toggleButtons.forEach(button => button.addEventListener('click', () => {
-    const itemIndex = button.getAttribute('index');
-
-    // Verify that itemIndex is not null or undefined
-    if (itemIndex === null || itemIndex === undefined) {
-      console.error('Invalid itemIndex:', itemIndex);
-      return; // Return early to avoid further processing
+  toggleButtons.forEach(toggle => toggle.addEventListener('click', () => {
+    const itemIndex = toggle.getAttribute('index');
+    console.log(itemIndex);
+    const libraryIndex = myLibrary.findIndex(item => item.index == itemIndex);
+    console.log(libraryIndex);
+    if (myLibrary[libraryIndex].read == true) {
+      myLibrary[libraryIndex].read = false;
+    } else if (myLibrary[libraryIndex].read == false) {
+      myLibrary[libraryIndex].read = true;
     }
-
-    // Parse the itemIndex as an integer (if needed) before searching
-    const indexToFind = parseInt(itemIndex, 10);
-
-    // Find the corresponding element in myLibrary
-    const libraryIndex = myLibrary.findIndex(item => item.index === indexToFind);
-
-    // Verify that the element was found in myLibrary
-    if (libraryIndex === -1) {
-      console.error('Item not found in myLibrary:', indexToFind);
-      return; // Return early to avoid further processing
-    }
-
-    // Toggle the 'read' property
-    myLibrary[libraryIndex].read = !myLibrary[libraryIndex].read;
-
-    // Perform additional actions after toggling
+    console.log(myLibrary[libraryIndex].read);
     displayBooksRead();
   }))
 }
-
 
 function displayBooksRead() {
   let sumOfBooksRead = myLibrary.reduce((accumulator, currentValue) => {
