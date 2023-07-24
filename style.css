@@ -6,6 +6,7 @@
   --secondary-color: #cadddb;
   --accent-color: #d4eac7;
   --button-hover: #ecf8e5;
+  --input-hover: #008583;
   color: var(--text-color);
 }
 
@@ -25,6 +26,10 @@ input {
   padding: 0.5rem;
   border: none;
   background-color: var(--background-color);
+}
+
+input:focus {
+  outline: solid 1px var(--input-hover);
 }
 
 .book-container>div {
@@ -175,5 +180,4 @@ p.error {
 
 .toggle-btn.active>.inner-circle {
   margin-left: 19px;
-
 }
