@@ -5,7 +5,7 @@
   --primary-color: #508e9f;
   --secondary-color: #cadddb;
   --accent-color: #d4eac7;
-  --button-hover: #c0d9b1;
+  --button-hover: #ecf8e5;
   color: var(--text-color);
 }
 
@@ -81,7 +81,6 @@ label.h2 {
 }
 
 .add-book-form {
-  display: none;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -119,6 +118,12 @@ label.h2 {
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   grid-column: 1/3;
+}
+
+p.error {
+  color: red;
+  grid-column: 1/3;
+  display: none;
 }
 
 .fade-in-div {
