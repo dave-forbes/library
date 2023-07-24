@@ -6,6 +6,7 @@ const addBookButton = document.querySelector('button.add-book');
 const formButton = document.querySelector('button.bring-up-form');
 const formDiv = document.querySelector('form.add-book-form');
 const closeForm = document.querySelector('button.cancel');
+const error = document.querySelector('p.error');
 const containerDiv = document.querySelector('div.book-container');
 const booksRead = document.querySelector('div.books-read');
 
@@ -30,10 +31,15 @@ closeForm.addEventListener('click', (event) => {
   event.preventDefault();
   formDiv.classList.remove('fade-in');
   formDiv.classList.add('fade-out');
+  error.style.display = 'none';
 })
 
 addBookButton.addEventListener('click', (event) => {
   event.preventDefault();
+  if (title.value == '' || author.value == '' || pages.value == '') {
+    error.style.display = 'block';
+    return;
+  }
   let readValue;
   if (read.classList.contains('active')) {
     readValue = true;
@@ -42,14 +48,14 @@ addBookButton.addEventListener('click', (event) => {
   }
   const book = new Book(title.value, author.value, pages.value, readValue);
   addBookToLibrary(book);
-  formDiv.classList.remove('fade-in')
+  formDiv.classList.remove('fade-in');
   formDiv.classList.add('fade-out');
+  error.style.display = 'none';
 });
 
 function addBookToLibrary(book) {
   formDiv.classList.remove('fade-in')
   myLibrary.push(book);
-  console.log(myLibrary);
   displayBook(book);
   addIndexes();
   addEventListenersToRemoveButtons();
@@ -98,29 +104,33 @@ function addEventListenersToRemoveButtons() {
   allRemoveButtons.forEach(button => button.addEventListener('click', () => {
     const itemIndex = button.getAttribute('index');
     const div = document.querySelector(`div[index="${itemIndex}"].fade-in-div`);
-    if (div !== null) containerDiv.removeChild(div);
+    if (div !== null) {
+      div.remove();
+    } else {
+      return;
+    }
     const libraryIndex = myLibrary.findIndex(item => item.index == itemIndex);
     myLibrary.splice(libraryIndex, 1);
+    addEventListenersToToggles();
     displayBooksRead();
   }))
 }
 
 function addEventListenersToToggles() {
   const toggleButtons = document.querySelectorAll('div.fade-in-div > div.toggle-btn');
-  toggleButtons.forEach(toggle => toggle.addEventListener('click', () => {
-    const itemIndex = toggle.getAttribute('index');
-    console.log(itemIndex);
-    const libraryIndex = myLibrary.findIndex(item => item.index == itemIndex);
-    console.log(libraryIndex);
+  toggleButtons.forEach((toggle, index) => toggle.addEventListener('click', () => {
+    addIndexes()
+    const libraryIndex = myLibrary.findIndex(item => item.index == index);
+    if ((toggleButtons.length - libraryIndex) > 1) return;
     if (myLibrary[libraryIndex].read == true) {
       myLibrary[libraryIndex].read = false;
     } else if (myLibrary[libraryIndex].read == false) {
       myLibrary[libraryIndex].read = true;
     }
-    console.log(myLibrary[libraryIndex].read);
     displayBooksRead();
   }))
 }
+
 
 function displayBooksRead() {
   let sumOfBooksRead = myLibrary.reduce((accumulator, currentValue) => {
