@@ -72,7 +72,7 @@ function displayBook(book) {
   }
   const div = document.createElement('div');
   div.innerHTML =
-    `<h2>Title</h2><h2>${book.title}</h2>
+    `<h2>${book.title}</h2>
     <p>Author</p><p>${book.author}</p>
     <p>Pages</p><p>${book.pages}</p>
     <p>Read</p><div id="read" class="toggle-btn ${toggle}" onclick="this.classList.toggle('active')">
@@ -134,7 +134,7 @@ function displayBooksRead() {
       accumulator++;
     } return accumulator;
   }, 0);
-  booksRead.innerHTML = `<div>${sumOfBooksRead} out of ${myLibrary.length} books read!<div>`
+  booksRead.innerHTML = `${sumOfBooksRead} out of ${myLibrary.length} books read!`
 }
 
 
