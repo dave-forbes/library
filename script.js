@@ -71,13 +71,13 @@ function displayBook(book) {
     toggle = '';
   }
   const div = document.createElement('div');
-  div.innerHTML = `
-  <h2>Title</h2><h2>${book.title}</h2>
-  <p>Author</p><p>${book.author}</p>
-  <p>Pages</p><p>${book.pages}</p>
-  <p>Read</p><div id="read" class="toggle-btn ${toggle}" onclick="this.classList.toggle('active')">
-  <div class="inner-circle"></div>
-</div>`;
+  div.innerHTML =
+    `<h2>Title</h2><h2>${book.title}</h2>
+    <p>Author</p><p>${book.author}</p>
+    <p>Pages</p><p>${book.pages}</p>
+    <p>Read</p><div id="read" class="toggle-btn ${toggle}" onclick="this.classList.toggle('active')">
+    <div class="inner-circle"></div>
+    </div>`;
   const removeButton = document.createElement('button');
   removeButton.textContent = 'Delete';
   removeButton.classList.add('remove');
@@ -122,11 +122,7 @@ function addEventListenersToToggles() {
     addIndexes()
     const libraryIndex = myLibrary.findIndex(item => item.index == index);
     if ((toggleButtons.length - libraryIndex) > 1) return;
-    if (myLibrary[libraryIndex].read == true) {
-      myLibrary[libraryIndex].read = false;
-    } else if (myLibrary[libraryIndex].read == false) {
-      myLibrary[libraryIndex].read = true;
-    }
+    myLibrary[libraryIndex].read === true ? myLibrary[libraryIndex].read = false : myLibrary[libraryIndex].read = true;
     displayBooksRead();
   }))
 }
