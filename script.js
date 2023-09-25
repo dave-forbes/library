@@ -18,8 +18,8 @@ function eventListeners() {
   formButton.addEventListener("click", showForm);
   closeForm.addEventListener("click", hideForm);
   addBookButton.addEventListener("click", clickAddBook);
-  document.addEventListener("click", toggleRead);
-  document.addEventListener("click", clickDeleteBook);
+  containerDiv.addEventListener("click", toggleRead);
+  containerDiv.addEventListener("click", clickDeleteBook);
 }
 
 function showForm() {
@@ -78,7 +78,7 @@ function displayBook(book) {
   div.innerHTML = `<h2>${book.title}</h2>
     <p>Author</p><p>${book.author}</p>
     <p>Pages</p><p>${book.pages}</p>
-    <p>Read</p><div id="read" class="book toggle-btn ${toggle}" onclick="this.classList.toggle('active')">
+    <p>Read</p><div id="read" class="toggle-btn ${toggle}" onclick="this.classList.toggle('active')">
     <div class="inner-circle"></div>
     </div>`;
   const removeButton = document.createElement("button");
@@ -121,10 +121,8 @@ function displayBooksRead() {
 
 function toggleRead(e) {
   if (
-    (e.target.classList.contains("book") &&
-      e.target.classList.contains("toggle-btn")) ||
-    (e.target.parentElement.classList.contains("book") &&
-      e.target.parentElement.classList.contains("toggle-btn"))
+    e.target.classList.contains("toggle-btn") ||
+    e.target.parentElement.classList.contains("toggle-btn")
   ) {
     const index = e.target.parentElement.getAttribute("Index");
     const libraryIndex = myLibrary.findIndex((item) => item.index == index);
