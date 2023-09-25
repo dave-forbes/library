@@ -21,13 +21,13 @@
   <header>
     <h1>My Library <i class="fa-solid fa-book"></i></h1>
   </header>
-  <form class="add-book-form fade-out">
+  <form class="add-book-form fade-out" novalidate>
     <label class="h2" for="title">Title</label>
-    <input id="title" type="text">
+    <input id="title" type="text" required maxlength="40">
     <label for="author">Author</label>
-    <input id="author" type="text">
+    <input id="author" type="text" required maxlength="40">
     <label for="pages">Pages</label>
-    <input id="pages" type="number">
+    <input id="pages" type="number" required min="1" max="10000">
     <label>Read?</label>
     <div id="read" class="toggle-btn" onclick="this.classList.toggle('active')">
       <div class="inner-circle"></div>
@@ -36,7 +36,7 @@
       <button class="add-book">Add book</button>
       <button class="cancel">Cancel</button>
     </div>
-    <p class="error fade-in-div">Please fill out all fields</p>
+    <p class="error fade-in-div"></p>
   </form>
   <div class="button-wrapper">
     <button class="bring-up-form">Add book</button>
