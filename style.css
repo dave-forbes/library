@@ -7,6 +7,7 @@
   --accent-color: #d4eac7;
   --button-hover: #ecf8e5;
   --input-hover: #008583;
+  --input-invalid: #c64805;
   color: var(--text-color);
 }
 
@@ -28,8 +29,12 @@ input {
   background-color: var(--background-color);
 }
 
-input:focus {
+input:focus, input:focus:invalid {
   outline: solid 1px var(--input-hover);
+}
+
+input:invalid {
+  outline: solid 1px var(--input-invalid);
 }
 
 .book-container>div {

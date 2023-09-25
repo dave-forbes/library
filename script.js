@@ -48,10 +48,8 @@ class Book {
 
 function clickAddBook(event) {
   event.preventDefault();
-  // if (title.value == "" || author.value == "" || pages.value == "") {
-  //   error.style.display = "block";
-  //   return;
-  // }
+  if (checkForm() === true) return;
+
   let readValue;
   if (read.classList.contains("active")) {
     readValue = true;
@@ -65,6 +63,26 @@ function clickAddBook(event) {
   addIndexes();
   displayBooksRead();
   hideForm(event);
+}
+
+function checkForm() {
+  if (
+    title.validity.valueMissing ||
+    author.validity.valueMissing ||
+    pages.validity.valueMissing
+  ) {
+    error.style.display = "block";
+    error.textContent = "Please fill out all fields";
+    return true;
+  } else if (pages.validity.rangeUnderflow) {
+    error.style.display = "block";
+    error.textContent = "We only accept books that have at least one page";
+    return true;
+  } else if (pages.validity.rangeOverflow) {
+    error.style.display = "block";
+    error.textContent = "We only accept books that have 10000 pages or less";
+    return true;
+  }
 }
 
 function displayBook(book) {
