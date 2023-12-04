@@ -13,7 +13,7 @@ Live demo - https://dave-forbes.github.io/Library/
 
 # Conclusion
 
-A nice introductions to working with objects and factory functions/classes, I also implemented form validation with clear error feedback.
+A nice introductions to working with objects and factory functions/classes, I also implemented form validation with clear error feedback. It was also good to get more practise with webpack to bundle modules.
 
 Features
 
