@@ -2,7 +2,7 @@
 
 From Odin Project javascript course.
 
-Live demo - https://dave-forbes.github.io/Library/
+Live demo - https://dave-forbes.github.io/library/
 
 # Technologies used
 
